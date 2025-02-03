@@ -91,8 +91,9 @@ const login = () => {
       errors.push("Email is required");
       email.parentElement.classList.add("incorrect");
     }
-    if (password.value.trim() === "") {
+    if (password.value.trim() === "" || password.value.length < 8) {
       errors.push("Password is required");
+      errors.push("Password must have at least 8 characters");
       password.parentElement.classList.add("incorrect");
     }
 
@@ -109,7 +110,7 @@ const login = () => {
       storedUser.email === email.value &&
       storedUser.password === password.value
     ) {
-      window.location.assign("rejistered.html");
+      window.location.assign("register.html");
       form.reset();
     } else {
       error_message.innerHTML = "Don't have an account? ";

@@ -1,29 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-:root{
-  --accent-color: #8672FF;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+:root {
+  --accent-color: #8672ff;
   --base-color: white;
-  --text-color: #2E2B41;
-  --input-color: #F3F0FF;
+  --text-color: #2e2b41;
+  --input-color: #f3f0ff;
 }
-*{
+* {
   margin: 0;
   padding: 0;
 }
-html{
+html {
   font-family: Poppins, Segoe UI, sans-serif;
   font-size: 12pt;
   color: var(--text-color);
   text-align: center;
 }
 
- body {
+body {
   height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(255, 255, 255, 1) 0%, rgba(0, 212, 255, 1) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(0, 212, 255, 1) 100%
+  );
 }
-.wrapper{
+.wrapper {
   box-sizing: border-box;
   background-color: var(--base-color);
   height: 70vh;
@@ -35,12 +41,12 @@ html{
   align-items: center;
   justify-content: center;
 }
-h1{
+h1 {
   font-size: 3rem;
   font-weight: 900;
   text-transform: uppercase;
 }
-form{
+form {
   width: min(400px, 100%);
   margin-top: 20px;
   margin-bottom: 50px;
@@ -49,12 +55,12 @@ form{
   align-items: center;
   gap: 10px;
 }
-form > div{
+form > div {
   width: 100%;
   display: flex;
   justify-content: center;
 }
-form label{
+form label {
   flex-shrink: 0;
   height: 50px;
   width: 50px;
@@ -68,7 +74,7 @@ form label{
   font-size: 1.5rem;
   font-weight: 500;
 }
-form input{
+form input {
   box-sizing: border-box;
   flex-grow: 1;
   min-width: 0;
@@ -81,24 +87,24 @@ form input{
   background-color: var(--input-color);
   transition: 150ms ease;
 }
-form input:hover{
+form input:hover {
   border-color: var(--accent-color);
 }
-form input:focus{
+form input:focus {
   outline: none;
   border-color: var(--text-color);
 }
-div:has(input:focus) > label{
+div:has(input:focus) > label {
   background-color: var(--text-color);
 }
-form input::placeholder{
+form input::placeholder {
   color: var(--text-color);
 }
-form button{
+form button {
   margin-top: 10px;
   border: none;
   border-radius: 1000px;
-  padding: .85em 4em;
+  padding: 0.85em 4em;
   background-color: var(--accent-color);
   color: var(--base-color);
   font: inherit;
@@ -107,32 +113,32 @@ form button{
   cursor: pointer;
   transition: 150ms ease;
 }
-form button:hover{
+form button:hover {
   background-color: var(--text-color);
 }
-form button:focus{
+form button:focus {
   outline: none;
   background-color: var(--text-color);
 }
-a{
+a {
   text-decoration: none;
   color: var(--accent-color);
 }
-a:hover{
+a:hover {
   text-decoration: underline;
 }
-@media(max-width: 1100px){
-  .wrapper{
+@media (max-width: 1100px) {
+  .wrapper {
     width: min(600px, 100%);
     border-radius: 0;
   }
 }
-form div.incorrect label{
+form div.incorrect label {
   background-color: #f06272;
 }
-form div.incorrect input{
+form div.incorrect input {
   border-color: #f06272;
 }
-#error-message{
-  color:#f06272;
+#error-message {
+  color: #f06272;
 }
