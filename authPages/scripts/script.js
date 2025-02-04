@@ -67,7 +67,7 @@ const registration = () => {
           password: password.value,
         })
       );
-      window.location.assign("rejistered.html");
+      window.location.assign("register.html");
       form.reset();
     }
   });
