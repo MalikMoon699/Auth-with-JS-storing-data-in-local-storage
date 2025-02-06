@@ -47,7 +47,6 @@ const registration = () => {
       }
 
       error_message.innerText = errors.join(" ");
-
       return errors;
     };
 
@@ -59,14 +58,21 @@ const registration = () => {
     );
 
     if (errors.length === 0) {
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          firstname: firstname.value,
-          email: email.value,
-          password: password.value,
-        })
-      );
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+
+      if (users.some((user) => user.email === email.value)) {
+        error_message.innerText = "Email already registered";
+        email.parentElement.classList.add("incorrect");
+        return;
+      }
+
+      users.push({
+        firstname: firstname.value,
+        email: email.value,
+        password: password.value,
+      });
+
+      localStorage.setItem("users", JSON.stringify(users));
       window.location.assign("register.html");
       form.reset();
     }
@@ -78,21 +84,19 @@ const login = () => {
     e.preventDefault();
 
     let errors = [];
-
     document
       .querySelectorAll(".incorrect")
       .forEach((el) => el.classList.remove("incorrect"));
 
     if (firstname.value.trim() === "") {
-      errors.push("Firstname is required");
-      firstname.parentElement.classList.add("incorrect");
+      errors.push("Name is required");
+      email.parentElement.classList.add("incorrect");
     }
     if (email.value.trim() === "") {
       errors.push("Email is required");
       email.parentElement.classList.add("incorrect");
     }
     if (password.value.trim() === "" || password.value.length < 8) {
-      errors.push("Password is required");
       errors.push("Password must have at least 8 characters");
       password.parentElement.classList.add("incorrect");
     }
@@ -102,7 +106,9 @@ const login = () => {
       return;
     }
 
-    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const storedUser = users.find((user) => user.email === email.value);
 
     if (
       storedUser &&
@@ -110,10 +116,14 @@ const login = () => {
       storedUser.email === email.value &&
       storedUser.password === password.value
     ) {
+      localStorage.setItem("users", JSON.stringify(users));
       window.location.assign("register.html");
       form.reset();
+
+      window.location.assign("register.html");
+      loginForm.reset();
     } else {
-      error_message.innerHTML = "Don't have an account? ";
+      error_message.innerHTML = "Invalid email or password. ";
       go();
       firstname.parentElement.classList.add("incorrect");
       email.parentElement.classList.add("incorrect");
