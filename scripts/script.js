@@ -8,7 +8,24 @@ const signUpBtn = document.getElementById("signUpBtn");
 const loginForm = document.getElementById("loginForm");
 const loginBtn = document.getElementById("loginBtn");
 
+window.addEventListener("DOMContentLoaded", () => {
+  const updateText = () => {
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    const name = document.getElementById("nameMessage");
+    const emailMsg = document.getElementById("emailMessage");
+
+    if (loggedInUser) {
+      if (name) name.textContent = loggedInUser.firstname;
+      if (emailMsg) emailMsg.textContent = loggedInUser.email;
+    }
+  };
+
+  updateText();
+});
+
 const registration = () => {
+  if (!form) return;
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -66,13 +83,17 @@ const registration = () => {
         return;
       }
 
-      users.push({
+      const newUser = {
         firstname: firstname.value,
         email: email.value,
         password: password.value,
-      });
+      };
+
+      users.push(newUser);
 
       localStorage.setItem("users", JSON.stringify(users));
+      localStorage.setItem("loggedInUser", JSON.stringify(newUser));
+
       window.location.assign("register.html");
       form.reset();
     }
@@ -80,6 +101,8 @@ const registration = () => {
 };
 
 const login = () => {
+  if (!loginForm) return;
+
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -88,10 +111,6 @@ const login = () => {
       .querySelectorAll(".incorrect")
       .forEach((el) => el.classList.remove("incorrect"));
 
-    if (firstname.value.trim() === "") {
-      errors.push("Name is required");
-      email.parentElement.classList.add("incorrect");
-    }
     if (email.value.trim() === "") {
       errors.push("Email is required");
       email.parentElement.classList.add("incorrect");
@@ -108,26 +127,16 @@ const login = () => {
 
     const users = JSON.parse(localStorage.getItem("users")) || [];
 
-    const storedUser = users.find((user) => user.email === email.value);
+    const storedUser = users.find(
+      (user) => user.email === email.value && user.password === password.value
+    );
 
-    if (
-      storedUser &&
-      storedUser.firstname === firstname.value &&
-      storedUser.email === email.value &&
-      storedUser.password === password.value
-    ) {
-      localStorage.setItem("users", JSON.stringify(users));
-      window.location.assign("register.html");
-      form.reset();
-
+    if (storedUser) {
+      localStorage.setItem("loggedInUser", JSON.stringify(storedUser));
       window.location.assign("register.html");
       loginForm.reset();
     } else {
-      error_message.innerHTML = "Invalid email or password. ";
-      go();
-      firstname.parentElement.classList.add("incorrect");
-      email.parentElement.classList.add("incorrect");
-      password.parentElement.classList.add("incorrect");
+      error_message.innerHTML = "Invalid email or password.";
     }
   });
 };
@@ -138,3 +147,57 @@ const go = () => {
   a.href = "signup.html";
   error_message.appendChild(a);
 };
+
+document.addEventListener("DOMContentLoaded", () => {
+  const innerContainer = document.getElementById("inner");
+  const outerContainer = document.getElementById("outer");
+  const clear = document.getElementById("cross");
+
+  if (innerContainer) innerContainer.style.display = "none";
+
+  if (outerContainer) {
+    outerContainer.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (innerContainer) innerContainer.style.display = "block";
+      outerContainer.style.padding = "10px";
+    });
+  }
+
+  if (clear) {
+    clear.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (innerContainer) innerContainer.style.display = "none";
+      outerContainer.style.padding = "10px 123px 15px 50px";
+    });
+  }
+
+  document.addEventListener("click", (event) => {
+    if (
+      outerContainer &&
+      innerContainer &&
+      !outerContainer.contains(event.target) &&
+      !innerContainer.contains(event.target)
+    ) {
+      innerContainer.style.display = "none";
+    }
+  });
+});
+
+const logout = () => {
+  localStorage.removeItem("loggedInUser");
+  window.location.assign("login.html");
+};
+
+registration();
+login();
+
+document.addEventListener("DOMContentLoaded", () => {
+  const innerContainer = document.querySelector(".innerContainer-1");
+
+  setTimeout(() => {
+innerContainer.classList.add("slideout");
+  }, 4000);
+  setTimeout(() => {
+    innerContainer.style.display = "none";
+  }, 5000);
+});

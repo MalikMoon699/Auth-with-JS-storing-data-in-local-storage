@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Ali",
+    "username": "ali",
+    "email": "ali@april.biz"
+  },
+    {
+    "id": 2,
+    "name": "Ahmad",
+    "username": "Ahmad",
+    "email": "Ahmad@april.biz"
+  },
+    {
+    "id": 3,
+    "name": "Fizan",
+    "username": "Fizan",
+    "email": "Fizan@april.biz"
+  },
+    {
+    "id": 4,
+    "name": "Abdullah",
+    "username": "Abdullah",
+    "email": "Abdullah@april.biz"
+  },
+    {
+    "id": 5,
+    "name": "Sharawan",
+    "username": "Sharawan",
+    "email": "Sharawan@april.biz"
+  }
+]

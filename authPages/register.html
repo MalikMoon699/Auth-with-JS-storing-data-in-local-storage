@@ -7,9 +7,39 @@
     <link rel="stylesheet" href="/assets/css/style.css" />
   </head>
   <body>
-    <p id="welcome-message"></p>
-    <h1>Now you are Registered</h1>
-    <h3>Login With another Account.<span><a href="/authPages/login.html">Login</a></span> </h3>
+    <header>
+      <div>
+        <input type="text" id="searchInput" placeholder="Search..." />
+        <button class="log-btn search" id="searchButton">Search</button>
+      </div>
+      <div class="rightDiv">
+        <ul>
+          <li id="outer">
+            <img src="/assets/images/profile.jpeg" />
+            <ul id="inner">
+              <li id="cross">+</li>
+              <li><p id="nameMessage"></p></li>
+              <li><p id="emailMessage"></p></li>
+              <li>      <h3>
+        Login With another Account.<span
+          ><a href="/authPages/login.html">Login</a></span
+        >
+      </h3></li>
+            </ul>
+          </li>
+        </ul>
+        <button class="log-btn" onclick="logout()">Logout</button>
+      </div>
+    </header>
+    <section>
+      <div class="innerContainer-1">
+        <h3>Now you are Registered</h3>
+      </div>
+    </section>
+    <section>
+      <div id="dataContainer"></div>
+    </section>
     <script src="/scripts/script.js"></script>
+    <script src="/json/json.js"></script>
   </body>
 </html>
