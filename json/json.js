@@ -2,7 +2,7 @@ let jsonData = [];
 
 const postData = async () => {
   try {
-    const response = await fetch("/json/sampleData.json");
+    const response = await fetch("../json/sampleData.json");
     jsonData = await response.json();
     console.log("Fetched successfully.");
   } catch (error) {
