@@ -138,7 +138,21 @@ form div.incorrect input {
 #error-message {
   color: #f06272;
 }
-
+.pass {
+  cursor: pointer;
+  position: absolute;
+  top: 49vh;
+  right: 37vw;
+}
+.logPass{
+  top: 52.5vh;
+}
+.rePass {
+  cursor: pointer;
+  position: absolute;
+  top: 56vh;
+  right: 37vw;
+}
 header {
   position: absolute;
   top: 0;
@@ -187,7 +201,7 @@ img {
   position: absolute;
   top: 81px;
   left: 47%;
-  transform: translateX(-50%) translateY(100px); 
+  transform: translateX(-50%) translateY(100px);
   font-size: 8px;
   background: #626060;
   color: #d7d6d6;
@@ -206,8 +220,8 @@ img {
     opacity: 1;
   }
 }
-.slideout{
-animation: slideout 0.8s ease-out forwards;
+.slideout {
+  animation: slideout 0.8s ease-out forwards;
 }
 @keyframes slideout {
   from {
@@ -219,7 +233,6 @@ animation: slideout 0.8s ease-out forwards;
     opacity: 0;
   }
 }
-
 
 .log-btn {
   color: white;

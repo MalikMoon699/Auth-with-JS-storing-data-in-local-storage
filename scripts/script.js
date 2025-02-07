@@ -195,9 +195,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const innerContainer = document.querySelector(".innerContainer-1");
 
   setTimeout(() => {
-innerContainer.classList.add("slideout");
+    innerContainer.classList.add("slideout");
   }, 4000);
   setTimeout(() => {
     innerContainer.style.display = "none";
   }, 5000);
 });
+
+const togglePassword = () => {
+  const passwordField = document.getElementById("password");
+  if (passwordField.type === "password") {
+    passwordField.type = "text";
+  } else {
+    passwordField.type = "password";
+  }
+};
+const toggleRePassword = () => {
+  const rePasswordField = document.getElementById("repeat-password");
+  if (rePasswordField.type === "password") {
+    rePasswordField.type = "text";
+  } else {
+    rePasswordField.type = "password";
+  }
+};

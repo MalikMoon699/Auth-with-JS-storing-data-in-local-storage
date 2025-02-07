@@ -55,8 +55,10 @@
             name="password"
             id="password"
             placeholder="Password"
-          />
+            />
+            <span class="toggle-icon pass" onclick="togglePassword()">👁️</span>
         </div>
+        
         <div>
           <label for="repeat-password">
             <svg
@@ -76,6 +78,7 @@
             id="repeat-password"
             placeholder="confirm Password"
           />
+          <span class="toggle-icon rePass" onclick="toggleRePassword()">👁️</span>
         </div>
         <button id="signUpBtn" type="submit" onclick="registration()">
           Signup
